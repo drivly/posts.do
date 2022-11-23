@@ -22,18 +22,19 @@ export const gettingStarted = [
 
 export const examples = {
   listItems: 'https://templates.do/worker',
+  sendWebhook: 'https://posts.do/hello=world&foo=bar/webhooks.do/2e6f16f5-d4af-4ac6-9561-59d794f136ae',
 }
 
 export default {
   fetch: async (req, env) => {
-    const { user, hostname, pathname, rootPath, pathSegments, query } = await env.CTX.fetch(req).then(res => res.json())
+    const { user, hostname, pathname, rootPath, pathOptions, pathSegments, search, query } = await env.CTX.fetch(req).then(res => res.json())
     if (rootPath) return json({ api, gettingStarted, examples, user })
     
     // TODO: Implement this
-    const [ resource, id ] = pathSegments
-    const data = { resource, id, hello: user.city }
-    
-    return json({ api, data, user })
+    const [ _, ...target ] = pathSegments
+    return fetch('https://' + target.join('/') + search, { method: 'POST', body: JSON.stringify(pathOptions)})
+//     const data = { resource, id, hello: user.city }    
+//     return json({ api, data, user })
   }
 }
 
