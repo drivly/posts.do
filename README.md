@@ -1,10 +1,6 @@
 # POSTs.do - Perform HTTP POST to an Endpoint
 
-## Getting Started
-
-If you don't already have a browser extension to pretty-print JSON and make links clickable, start by installing that: <https://extensions.do>
-
-Then interactively use the API at: <https://templates.do/api>
+Then interactively use the API at: <https://posts.do/hello=world&foo=bar/webhooks.do/2e6f16f5-d4af-4ac6-9561-59d794f136aei>
 
 ```json
 {
